@@ -1,6 +1,8 @@
 package com.absolom.mix;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -49,7 +51,7 @@ public class MixTextToJson {
                     content.put("layer", layerNameList);
                 }
                 writeFile(WORKSPACE_PATH + "/" + stationDirectory.getName() + "/",
-                        "flow_line_" + stationDirectory.getName() + ".json", content.toJSONString());
+                        "flow_line_" + stationDirectory.getName() + ".json", JSON.toJSONString(content, SerializerFeature.DisableCircularReferenceDetect));
             }
         }
     }
