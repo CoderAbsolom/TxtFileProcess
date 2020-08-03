@@ -19,6 +19,9 @@ public class MixTextToJson {
 
     private static void traverseDirectory() throws IOException {
         File workspace = new File(MixTextToJson.WORKSPACE_PATH);
+        if (!workspace.exists()) {
+            throw new RuntimeException("工作空间不存在：D:/MixTextToJson");
+        }
         LinkedList<File> stationList = new LinkedList<>(Arrays.asList(Objects.requireNonNull(workspace.listFiles())));
         if (CollectionUtils.isNotEmpty(stationList)) {
             for (File stationDirectory : stationList) {
@@ -75,6 +78,7 @@ public class MixTextToJson {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        coordinateList.add(coordinateList.get(0));
         return coordinateList;
     }
 
